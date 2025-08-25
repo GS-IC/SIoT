@@ -1,0 +1,11 @@
+import firebase_admin
+from firebase_admin import credentials, db
+
+cred = credentials.Certificate("siot-de2025-firebase-adminsdk-fbsvc-530ca9f06e.json")
+firebase_admin.initialize_app(cred, {'databaseURL': 'https://siot-de2025-default-rtdb.europe-west1.firebasedatabase.app'})
+
+# test reading from firebase
+data = db.reference('data/combined_data_upload').get()
+print(f"Read {len(data)} data points")
+print(f"First entry: {list(data.items())[0]}")
+
